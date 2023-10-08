@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="Description" content="Enter your description here"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<link rel="stylesheet" href="assets/css/style.css">
+<title>Title</title>
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card p-4">
+                    <h3 class="card-title">Enter a stock ticker to begin search</h3>
+                    {% include 'stockform.html' %}
+                </div>
+            </div>
+        </div>
+{% if info %}
+        <div class="row justify-content-center mt-4">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                      <h5 class="card-title">{{ info.stock_name }}</h5>
+                      <h6 class="card-subtitle mb-2 text-muted">{{ info.stock_ticker }}</h6>
+                      <h6 class="card-subtitle mb-2 text-muted">{{ info.open_price }}</h6>
+                      <p class="card-text">{{ info.close_price }}</p>
+                        <a href="#" class="card-link">Add Another</a>
+                        <a href="#" class="card-link">Delete From List</a>
+                        <a href="{{ url_for('site.watchlist'(id= user.user_id, t_id=info.stock_id )) }}"class="btn btn-primary">Add To Watchlist</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+{% endif %}
+    </div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.0/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
